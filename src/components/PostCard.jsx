@@ -13,6 +13,8 @@ export default function PostCard({ post, isAdmin = false }) {
   const [isLiked, setIsLiked] = useState(user ? hasLiked(post.id, user.id) : false);
   const [localLikes, setLocalLikes] = useState(post.likes);
   const [showActions, setShowActions] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const CHAR_LIMIT = 100;
 
   const handleLike = () => {
     if (!isLoggedIn) {
@@ -66,11 +68,16 @@ export default function PostCard({ post, isAdmin = false }) {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
+  const isLongCaption = post.caption.length > CHAR_LIMIT;
+  const displayedCaption = isExpanded || !isLongCaption
+    ? post.caption
+    : `${post.caption.substring(0, CHAR_LIMIT)}...`;
+
   return (
     <>
-      <article className="bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/20">
+      <article className="flex flex-col h-full bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/20">
         {/* Post Header */}
-        <div className="flex items-center justify-between p-3 sm:p-4">
+        <div className="flex items-center justify-between p-3 sm:p-4 shrink-0">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center transition-transform duration-300 hover:scale-110">
               <span className="text-xs sm:text-sm font-semibold">CK</span>
@@ -79,7 +86,7 @@ export default function PostCard({ post, isAdmin = false }) {
           </div>
           {isAdmin && (
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setShowActions(!showActions)}
                 className="p-1.5 sm:p-2 hover:bg-secondary rounded-lg transition-all duration-200 hover:rotate-90"
               >
@@ -101,7 +108,7 @@ export default function PostCard({ post, isAdmin = false }) {
         </div>
 
         {/* Post Image */}
-        <div className="aspect-square bg-secondary relative group overflow-hidden">
+        <div className="aspect-square bg-secondary relative group overflow-hidden shrink-0">
           <img
             src={post.image}
             alt={post.caption}
@@ -120,7 +127,7 @@ export default function PostCard({ post, isAdmin = false }) {
         </div>
 
         {/* Post Actions */}
-        <div className="p-3 sm:p-4">
+        <div className="p-3 sm:p-4 flex-1 flex flex-col">
           <div className="flex items-center justify-between mb-2 sm:mb-3">
             <div className="flex items-center gap-3 sm:gap-4">
               <button
@@ -131,13 +138,13 @@ export default function PostCard({ post, isAdmin = false }) {
                   className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-200 ${isLiked ? 'fill-red-500 text-red-500' : ''}`}
                 />
               </button>
-              <button 
+              <button
                 onClick={() => setShowComments(!showComments)}
                 className="transition-all duration-200 hover:scale-110"
               >
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
-              <button 
+              <button
                 onClick={handleShare}
                 className="transition-all duration-200 hover:scale-110 hover:rotate-12"
               >
@@ -155,33 +162,44 @@ export default function PostCard({ post, isAdmin = false }) {
           </div>
 
           {/* Caption */}
-          <div className="mb-1.5 sm:mb-2">
+          <div className="mb-1.5 sm:mb-2 flex-1">
             <span className="font-semibold text-xs sm:text-sm mr-1.5 sm:mr-2">christopherkola</span>
-            <span className="text-xs sm:text-sm line-clamp-2">{post.caption}</span>
+            <span className="text-xs sm:text-sm break-words">
+              {displayedCaption}
+              {isLongCaption && (
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="ml-1 text-muted-foreground hover:text-primary font-medium"
+                >
+                  {isExpanded ? ' less' : ' more'}
+                </button>
+              )}
+            </span>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-1 mb-1.5 sm:mb-2">
-            {post.tags.map((tag, idx) => (
-              <span key={idx} className="text-xs text-primary hover:underline cursor-pointer transition-all duration-200">
-                #{tag}
-              </span>
-            ))}
-          </div>
+          <div className="mt-auto">
+            <div className="flex flex-wrap gap-1 mb-1.5">
+              {post.tags.map((tag, idx) => (
+                <span key={idx} className="text-xs text-primary hover:underline cursor-pointer">
+                  #{tag}
+                </span>
+              ))}
+            </div>
 
-          {/* Comments Count */}
-          {post.comments.length > 0 && (
-            <button
-              onClick={() => setShowComments(!showComments)}
-              className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 hover:text-foreground transition-colors duration-200"
-            >
-              View all {post.comments.length} comments
-            </button>
-          )}
+            {/* Comments Count */}
+            {post.comments.length > 0 && (
+              <button
+                onClick={() => setShowComments(!showComments)}
+                className="block text-xs sm:text-sm text-muted-foreground mb-1.5 hover:text-foreground"
+              >
+                View all {post.comments.length} comments
+              </button>
+            )}
 
-          {/* Date */}
-          <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wide">
-            {formatDate(post.createdAt)}
+            <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wide">
+              {formatDate(post.createdAt)}
+            </div>
           </div>
         </div>
 
@@ -191,8 +209,8 @@ export default function PostCard({ post, isAdmin = false }) {
             {/* Existing Comments */}
             <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4 max-h-48 sm:max-h-60 overflow-y-auto">
               {post.comments.map((comment, idx) => (
-                <div 
-                  key={comment.id} 
+                <div
+                  key={comment.id}
                   className="flex items-start gap-2 sm:gap-3 animate-fade-in"
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >

@@ -28,11 +28,11 @@ export default function PostsGrid() {
         )}
 
         {/* Posts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-stretch">
           {posts.map((post, index) => (
-            <div 
-              key={post.id} 
-              className="animate-slide-up"
+            <div
+              key={post.id}
+              className="animate-slide-up h-full"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <PostCard post={post} isAdmin={isAdmin} />
