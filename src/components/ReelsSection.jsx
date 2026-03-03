@@ -53,12 +53,11 @@ function ReelPlayer({ reel, index }) {
 
   return (
     <>
-      <div 
-        className="relative bg-black rounded-xl overflow-hidden group animate-slide-up"
-        style={{ 
+      <div
+        className="relative bg-black rounded-xl overflow-hidden group animate-slide-up shadow-lg"
+        style={{
           animationDelay: `${index * 100}ms`,
           aspectRatio: '9/16',
-          maxHeight: 'min(70vh, 500px)'
         }}
       >
         {/* Video */}
@@ -116,8 +115,8 @@ function ReelPlayer({ reel, index }) {
           <button className="flex flex-col items-center gap-0.5 text-white transition-transform duration-200 hover:scale-110">
             <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-          <button 
-            onClick={handleShare} 
+          <button
+            onClick={handleShare}
             className="flex flex-col items-center gap-0.5 text-white transition-transform duration-200 hover:scale-110 hover:rotate-12"
           >
             <Send className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -154,10 +153,10 @@ function ReelPlayer({ reel, index }) {
 
 export default function ReelsSection() {
   return (
-    <div className="py-4 px-3 sm:px-4 lg:px-8 min-h-[calc(100vh-350px)]">
+    <div className="py-4 px-3 sm:px-4 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Reels Grid - Better space usage on mobile */}
-        <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {reels.map((reel, index) => (
             <ReelPlayer key={reel.id} reel={reel} index={index} />
           ))}

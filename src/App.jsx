@@ -23,7 +23,7 @@ function TopBar() {
       {isTransitioning && (
         <div className="fixed inset-0 z-[300] bg-background animate-theme-flash pointer-events-none" />
       )}
-      
+
       {/* Top Controls - NOT sticky, scrolls with page */}
       <div className="flex justify-end gap-2 p-3 sm:p-4 animate-fade-in">
         {/* Message Button */}
@@ -76,39 +76,39 @@ function AppContent() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Grain Overlay */}
       <div className="grain-overlay" />
-      
+
       {/* Main Content */}
       <main className="max-w-4xl mx-auto pb-6">
         {/* Top Bar - Scrolls with content */}
         <TopBar />
-        
+
         {/* Profile Header */}
         <ProfileHeader />
-        
+
         {/* Skills Highlights */}
         <SkillsHighlights />
-        
+
         {/* Tab Navigation */}
         <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
-        
+
         {/* Content Area with sliding animation */}
         <div className="relative overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-out"
+          <div
+            className="flex transition-transform duration-500 ease-out items-start"
             style={{ transform: `translateX(-${['posts', 'reels', 'tagged'].indexOf(activeTab) * 100}%)` }}
           >
             {/* Posts Section */}
-            <div className="w-full flex-shrink-0">
+            <div className={`w-full flex-shrink-0 ${activeTab !== 'posts' ? 'h-0 overflow-hidden' : 'h-auto'}`}>
               <PostsGrid />
             </div>
-            
+
             {/* Reels Section */}
-            <div className="w-full flex-shrink-0">
+            <div className={`w-full flex-shrink-0 ${activeTab !== 'reels' ? 'h-0 overflow-hidden' : 'h-auto'}`}>
               <ReelsSection />
             </div>
-            
+
             {/* Tagged Section */}
-            <div className="w-full flex-shrink-0">
+            <div className={`w-full flex-shrink-0 ${activeTab !== 'tagged' ? 'h-0 overflow-hidden' : 'h-auto'}`}>
               <TaggedSection />
             </div>
           </div>
