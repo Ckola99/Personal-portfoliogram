@@ -17,8 +17,8 @@ const typeLabels = {
 export default function TaggedSection() {
   const [filter, setFilter] = useState('all');
 
-  const filteredAchievements = filter === 'all' 
-    ? achievements 
+  const filteredAchievements = filter === 'all'
+    ? achievements
     : achievements.filter(a => a.type === filter);
 
   return (
@@ -67,9 +67,9 @@ export default function TaggedSection() {
                     </div>
                     <h3 className="font-semibold text-xs sm:text-sm mb-0.5 line-clamp-2 leading-tight">{achievement.title}</h3>
                     <p className="text-muted-foreground text-[10px] sm:text-xs mb-1">{achievement.organization}</p>
-                    
+
                     {achievement.description && (
-                      <p className="text-[10px] sm:text-xs text-muted-foreground mb-1.5 line-clamp-2">
+                      <p className="text-[10px] sm:text-xs text-muted-foreground mb-1.5 line-clamp-3">
                         {achievement.description}
                       </p>
                     )}
@@ -108,9 +108,12 @@ export default function TaggedSection() {
                 <h4 className="font-semibold text-xs sm:text-sm mb-0.5 line-clamp-2 leading-tight">Diploma in Software Engineering (Full-Stack)</h4>
                 <p className="text-muted-foreground text-[10px] sm:text-xs">WeThinkCode_ — NQF Level 6</p>
                 <p className="text-muted-foreground text-[10px] sm:text-xs">Feb 2025 - May 2026</p>
-                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1.5 line-clamp-2">
-                  Comprehensive full-stack software engineering program covering cloud, DevOps, 
-                  backend systems, and modern frontend development.
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1.5 line-clamp-10">
+                  Comprehensive training in full-stack development covering Java (Spring Boot),
+                  Python, REST APIs, and scalable web application architecture. Delivered team-based MVP
+                  projects focused on server design and modular system architecture. Currently specializing
+                  in Cloud Computing, CI/CD, and DevOps on AWS, including containerization, serverless architecture
+                  (Lambda, DynamoDB), and Infrastructure-as-Code practices.
                 </p>
               </div>
             </div>

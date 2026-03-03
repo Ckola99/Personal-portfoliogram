@@ -97,7 +97,7 @@ function ReelPlayer({ reel, index }) {
         {/* Info Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 bg-gradient-to-t from-black/80 to-transparent">
           <h3 className="text-white font-semibold text-xs sm:text-sm mb-0.5 line-clamp-1">{reel.title}</h3>
-          <p className="text-white/80 text-[10px] sm:text-xs line-clamp-2">{reel.description}</p>
+          <p className="text-white/80 text-[10px] sm:text-xs line-clamp-3">{reel.description}</p>
           <div className="flex items-center gap-2 mt-1 sm:mt-1.5 text-white/60 text-[10px] sm:text-xs">
             <span>{reel.views.toLocaleString()} views</span>
           </div>

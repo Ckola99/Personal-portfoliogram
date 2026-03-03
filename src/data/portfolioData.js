@@ -133,65 +133,122 @@ export const reels = [
 
 export const achievements = [
   {
-    id: 'a1',
-    title: 'Diploma in Software Engineering (Full-Stack)',
-    organization: 'WeThinkCode_',
-    date: 'Feb 2025 - May 2026',
-    type: 'experience',
-    description: 'NQF Level 6 qualification in full-stack software engineering',
+    id: "a1",
+    title: "Freelance Software Developer – WhatsApp Business Automation",
+    organization: "Independent Client Project",
+    date: "May 2025 - Jan 2026",
+    type: "experience",
+    description:
+      "Designed, developed, and maintained a production-ready WhatsApp chatbot system for a small business."
   },
   {
-    id: 'a2',
-    title: 'Student Wellness Supervisor',
-    organization: 'WeThinkCode_',
-    date: 'Oct 2025 - Present',
-    type: 'experience',
-    description: 'Led student support programs, coordinated workshops, and oversaw facilitators',
+    id: "a2",
+    title: "Student Wellness Supervisor",
+    organization: "WeThinkCode_",
+    date: "Oct 2025 - Present",
+    type: "experience",
+    description:
+      "Led student support initiatives, coordinated wellness workshops, and supervised facilitators to enhance student engagement."
   },
   {
-    id: 'a3',
-    title: 'Bootcamp Mentor & Python Workshop Facilitator',
-    organization: 'WeThinkCode_',
-    date: 'Aug 2025 - Oct 2025',
-    type: 'experience',
-    description: 'Facilitated Python workshops and guided learners through algorithmic challenges',
+    id: "a3",
+    title: "Bootcamp Mentor & Python Workshop Facilitator",
+    organization: "WeThinkCode_",
+    date: "Aug 2025 - Oct 2025",
+    type: "experience",
+    description:
+      "Facilitated Python programming workshops and mentored learners through algorithmic problem-solving and foundational software engineering concepts."
   },
   {
-    id: 'a4',
-    title: 'HPE Software Engineering Job Simulation',
-    organization: 'Hewlett Packard Enterprise',
-    date: 'January 2026',
-    type: 'certificate',
-    description: 'Built RESTful web service with Java Spring Boot and unit testing',
+    id: "a4",
+    title: "Software Engineering Job Simulation – REST API Development",
+    organization: "Hewlett Packard Enterprise (Forage)",
+    date: "Jan 2026",
+    type: "certificate",
+    description:
+      "Completed a hands-on job simulation focused on building RESTful web services using Java Spring Boot."
   },
   {
-    id: 'a5',
-    title: 'Python Developer Certification',
-    organization: 'freeCodeCamp',
-    date: 'January 2025',
-    type: 'certificate',
+    id: "a5",
+    title: "Python Programming Certification",
+    organization: "freeCodeCamp",
+    date: "Jan 2025",
+    type: "certificate",
+    description:
+      "Demonstrated proficiency in Python programming, including data structures, algorithms, problem-solving, and backend development fundamentals."
   },
   {
-    id: 'a6',
-    title: 'JavaScript Algorithms and Data Structures',
-    organization: 'freeCodeCamp',
-    date: 'June 2023',
-    type: 'certificate',
+    id: "a6",
+    title: "JavaScript Algorithms & Data Structures Certification",
+    organization: "freeCodeCamp",
+    date: "Jun 2023",
+    type: "certificate",
+    description:
+      "Mastered core JavaScript concepts, algorithmic thinking, data structures, and problem-solving techniques essential for frontend and backend development."
   },
   {
-    id: 'a7',
-    title: 'Responsive Web Design',
-    organization: 'freeCodeCamp',
-    date: 'June 2023',
-    type: 'certificate',
+    id: "a7",
+    title: "Responsive Web Design Certification",
+    organization: "freeCodeCamp",
+    date: "Jun 2023",
+    type: "certificate",
+    description:
+      "Developed responsive web applications using HTML5 and CSS3, applying accessibility standards and mobile-first design principles."
   },
   {
-    id: 'a8',
-    title: 'SQL Intermediate',
-    organization: 'SoloLearn',
-    date: 'November 2025',
-    type: 'certificate',
+    id: "a8",
+    title: "SQL Intermediate – Database Querying & Optimization",
+    organization: "SoloLearn",
+    date: "Nov 2025",
+    type: "certificate",
+    description:
+      "Strengthened skills in relational database querying, joins, aggregations, and data manipulation using SQL."
   },
+  {
+    id: "a9",
+    title: "SQL Fundamentals Certification",
+    organization: "SoloLearn",
+    date: "Nov 2025",
+    type: "certificate",
+    description:
+      "Built foundational knowledge of relational databases, structured query language syntax, and data retrieval."
+  },
+  {
+    id: "a10",
+    title: "Java Programming – Intermediate Concepts",
+    organization: "SoloLearn",
+    date: "Aug 2025",
+    type: "certificate",
+    description:
+      "Applied object-oriented programming principles, core Java syntax, and application logic development."
+  },
+  {
+    id: "a11",
+    title: "Java Programming Foundations",
+    organization: "SoloLearn",
+    date: "Jul 2025",
+    type: "certificate",
+    description:
+      "Learned Java fundamentals including variables, control structures, functions, and object-oriented basics."
+  },
+  {
+    id: "a12",
+    title: "AI Prompt Engineering Simulation",
+    organization: "Forage",
+    date: "Nov 2024",
+    type: "certificate",
+    description:
+      "Completed a practical simulation focused on structured prompt engineering using ICO frameworks to design effective AI-driven outputs."
+  },
+  {
+    id: "a13",
+    title: "Front-End Engineering Career Path",
+    organization: "Codecademy",
+    date: "Jul 2024",
+    type: "certificate",
+    description:
+      "Completed an intensive front-end development pathway covering HTML, CSS, JavaScript, React, performance optimization, and version control workflows."
+  }
 ];
 
 export const socialLinks = {

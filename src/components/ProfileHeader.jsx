@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import { 
-  ChevronDown, 
-  Github, 
-  Linkedin, 
-  Download, 
-  MapPin, 
-  Mail, 
+import {
+  ChevronDown,
+  Github,
+  Linkedin,
+  Download,
+  MapPin,
+  Mail,
   Check,
   UserPlus
 } from 'lucide-react';
@@ -56,7 +56,7 @@ export default function ProfileHeader() {
             {/* Username and Actions */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
               <h1 className="text-lg sm:text-xl font-semibold text-center sm:text-left animate-fade-in">christopherkola</h1>
-              
+
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 {/* Following Dropdown */}
                 <div className="relative" ref={dropdownRef}>
@@ -157,15 +157,14 @@ export default function ProfileHeader() {
                 Cloud Engineer | Software Developer
               </p>
               <p className="text-xs sm:text-sm px-4 sm:px-0">
-                I build reliable systems, automate deployments, and ship clean full-stack products. 
-                Currently studying at WeThinkCode_ 🎓
+                Full-stack software engineer building modern applications and robust backend systems. Moving toward cloud-native architecture, DevOps automation, and AWS engineering.
               </p>
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground pt-1">
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   Johannesburg, South Africa
                 </span>
-                <a 
+                <a
                   href={`mailto:${socialLinks.email}`}
                   className="flex items-center gap-1 hover:text-foreground transition-colors duration-200"
                 >
