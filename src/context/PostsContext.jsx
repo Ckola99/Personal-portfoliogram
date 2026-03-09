@@ -37,45 +37,71 @@ export function PostsProvider({ children }) {
     }
   }, [posts]);
 
-  const unlikePost = useCallback((postId, userId) => {
-    setPosts((prev) =>
-      prev.map((post) =>
-        post.id === postId && post.likedBy.includes(userId)
-          ? {
-              ...post,
-              likes: Math.max(0, post.likes - 1),
-              likedBy: post.likedBy.filter((id) => id !== userId),
-            }
-          : post
-      )
-    );
-  }, []);
+  const unlikePost = useCallback(async (postId, userId) => {
+    const postToUnlike = posts.find(p => p.id === postId)
 
-  const addComment = useCallback((postId, comment) => {
+    if (!postToUnlike || !postToUnlike.likedBy.includes(userId)) return;
+
+    const updatedPost = {
+      ...postToUnlike,
+      likes: Math.max(0, postToUnlike.likes - 1),
+      likedBy: postToUnlike.likedBy.filter(id => id !== userId)
+    };
+
+    try {
+      const returnedPost = await postService.update(postId, updatedPost);
+      setPosts(prev => prev.map(p => p.id !== postId ? p : returnedPost));
+    } catch (error) {
+      console.error("Failed to unlike post:", error);
+    }
+  }, [posts]);
+
+  const addComment = useCallback(async (postId, comment) => {
+    const postToUpdate = posts.find((p) => p.id === postId);
+    if (!postToUpdate) return;
+
     const newComment = {
       ...comment,
       id: `c${Date.now()}`,
       postId,
       createdAt: new Date().toISOString(),
     };
-    setPosts((prev) =>
-      prev.map((post) =>
-        post.id === postId
-          ? { ...post, comments: [...post.comments, newComment] }
-          : post
-      )
-    );
-  }, []);
 
-  const deleteComment = useCallback((postId, commentId) => {
-    setPosts((prev) =>
-      prev.map((post) =>
-        post.id === postId
-          ? { ...post, comments: post.comments.filter((c) => c.id !== commentId) }
-          : post
-      )
-    );
-  }, []);
+    const updatedPost = {
+      ...postToUpdate,
+      comments: [...postToUpdate.comments, newComment],
+    };
+
+    try {
+      const returnedPost = await postService.update(postId, updatedPost);
+
+      setPosts((prev) =>
+        prev.map((post) => (post.id === postId ? returnedPost : post))
+      );
+    } catch (error) {
+      console.error("Failed to add comment:", error);
+    }
+  }, [posts]);
+
+  const deleteComment = useCallback(async (postId, commentId) => {
+    const postToUpdate = posts.find((p) => p.id === postId);
+    if (!postToUpdate) return;
+
+    const updatedPost = {
+      ...postToUpdate,
+      comments: postToUpdate.comments.filter((c) => c.id !== commentId),
+    };
+
+    try {
+      const returnedPost = await postService.update(postId, updatedPost);
+
+      setPosts((prev) =>
+        prev.map((post) => (post.id === postId ? returnedPost : post))
+      );
+    } catch (error) {
+      console.error("Failed to delete comment:", error);
+    }
+  }, [posts]);
 
   const replyToComment = useCallback((postId, parentCommentId, reply) => {
     const newReply = {

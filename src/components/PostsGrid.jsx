@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { Plus } from 'lucide-react';
 import { usePosts } from '@/context/PostsContext';
 import { useAuth } from '@/context/AuthContext';
 import PostCard from './PostCard';
@@ -8,8 +6,6 @@ export default function PostsGrid() {
   const { posts } = usePosts();
   const { user } = useAuth();
   const isAdmin = user?.username === 'ChocoMan';
-
-  console.log("posts", posts)
 
   return (
     <div className="py-4 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-350px)]">
