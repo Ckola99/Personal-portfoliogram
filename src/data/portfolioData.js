@@ -1,7 +1,7 @@
 // Portfolio Data
 
 export const profileStats = {
-  posts: 4,
+  projects: 4,
   followers: 2055,
   following: 1807,
 };
@@ -120,7 +120,7 @@ export const reels = [
   {
     id: 'r3',
     thumbnail: '/reels/cloud-funfacts-thumb.jpg',
-    videoUrl: '/reels/cloud-funfacts-demo.mp4',
+    videoUrl: '/reels/Video_260118122544_FreeExport.mp4',
     title: 'AWS FunFacts Generator',
     description: 'Demo of the serverless application generating cloud facts with AI enhancement via AWS Bedrock.',
     githubUrl: 'https://github.com/Ckola99/CloudFunFacts',

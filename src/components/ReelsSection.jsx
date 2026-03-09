@@ -112,9 +112,6 @@ function ReelPlayer({ reel, index }) {
             <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
             <span className="text-[10px] sm:text-xs">{likes}</span>
           </button>
-          <button className="flex flex-col items-center gap-0.5 text-white transition-transform duration-200 hover:scale-110">
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
           <button
             onClick={handleShare}
             className="flex flex-col items-center gap-0.5 text-white transition-transform duration-200 hover:scale-110 hover:rotate-12"

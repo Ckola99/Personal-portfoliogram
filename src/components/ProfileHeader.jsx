@@ -137,8 +137,8 @@ export default function ProfileHeader() {
             {/* Stats with stagger animation */}
             <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 mb-3 sm:mb-4">
               <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <span className="font-semibold text-sm sm:text-base">{profileStats.posts}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">posts</span>
+                <span className="font-semibold text-sm sm:text-base">{profileStats.projects}</span>
+                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">projects</span>
               </div>
               <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <span className="font-semibold text-sm sm:text-base">{profileStats.followers.toLocaleString()}</span>

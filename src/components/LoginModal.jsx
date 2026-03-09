@@ -15,17 +15,17 @@ export default function LoginModal({ onClose }) {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-card border border-border rounded-2xl p-5 sm:p-6 w-full max-w-sm animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5 sm:mb-6">
           <h2 className="text-lg sm:text-xl font-bold">Login</h2>
-          <button 
+          <button
             onClick={onClose}
             className="p-2 hover:bg-secondary rounded-lg transition-all duration-200 hover:rotate-90"
           >
@@ -58,10 +58,6 @@ export default function LoginModal({ onClose }) {
             Login
           </button>
         </form>
-
-        <p className="text-[10px] sm:text-xs text-muted-foreground text-center mt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-          Use "ChocoMan" for admin access.
-        </p>
       </div>
     </div>
   );

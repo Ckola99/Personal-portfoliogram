@@ -78,18 +78,6 @@ export function PostsProvider({ children }) {
     );
   }, []);
 
-  const addPost = useCallback((post) => {
-    const newPost = {
-      ...post,
-      id: `p${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      likes: 0,
-      likedBy: [],
-      comments: [],
-    };
-    setPosts((prev) => [newPost, ...prev]);
-  }, []);
-
   const deletePost = useCallback((postId) => {
     setPosts((prev) => prev.filter((post) => post.id !== postId));
   }, []);
@@ -111,7 +99,6 @@ export function PostsProvider({ children }) {
         addComment,
         deleteComment,
         replyToComment,
-        addPost,
         deletePost,
         hasLiked,
       }}
