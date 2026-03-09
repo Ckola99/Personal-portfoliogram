@@ -12,18 +12,15 @@ app.use(cors());
 // Parse incoming JSON bodies
 app.use(express.json());
 
-// 1. Define the custom Morgan token to see the data sent in POST requests
-// This is essential for debugging what the user is actually sending to your API
+
 morgan.token('body', (req) => {
 	return req.method === 'POST' ? JSON.stringify(req.body) : '';
 });
 
-// 2. Set the logging format and tell app to use it
 const morganFormat = ':method :url :status :res[content-length] - :response-time ms :body';
 app.use(morgan(morganFormat));
 
 // --- DATA ---
-// This acts as your temporary database until we connect MongoDB
 let posts = [
 	{
 		id: '1',
@@ -125,8 +122,31 @@ app.delete('/api/posts/:id', (request, response) => {
 	const id = request.params.id;
 	posts = posts.filter((p) => p.id !== id);
 
-	// 204 No Content is the standard response for a successful delete
+	// 204 No Content
 	response.status(204).end();
+});
+
+app.put('/api/posts/:id', (request, response) => {
+	const id = request.params.id;
+	const body = request.body;
+
+	const postIndex = posts.findIndex(p => p.id === id);
+
+	if (postIndex === -1) {
+		return response.status(404).json({ error: 'Post not found' });
+	}
+
+	const updatedPost = {
+		...posts[postIndex],
+		likes: body.likes !== undefined ? body.likes : posts[postIndex].likes,
+		likedBy: body.likedBy || posts[postIndex].likedBy,
+		caption: body.caption || posts[postIndex].caption,
+		comments: body.comments || posts[postIndex].comments
+	};
+
+	posts[postIndex] = updatedPost;
+	console.log(`[UPDATE] Post ${id} - Likes: ${updatedPost.likes}, LikedBy Count: ${updatedPost.likedBy.length}`);
+	response.json(updatedPost);
 });
 
 // POST (Create) a new post

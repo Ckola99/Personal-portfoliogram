@@ -9,6 +9,8 @@ export default function PostsGrid() {
   const { user } = useAuth();
   const isAdmin = user?.username === 'ChocoMan';
 
+  console.log("posts", posts)
+
   return (
     <div className="py-4 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-350px)]">
       <div className="max-w-6xl mx-auto">
@@ -16,6 +18,7 @@ export default function PostsGrid() {
         {/* Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 gap-4 sm:gap-6 items-stretch">
           {posts.map((post, index) => (
+
             <div
               key={post.id}
               className="animate-slide-up h-full"

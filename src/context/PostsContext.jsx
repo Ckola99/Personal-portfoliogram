@@ -1,20 +1,41 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { posts as initialPosts } from '@/data/portfolioData';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import postService from '../services/posts'
 
 const PostsContext = createContext(undefined);
 
 export function PostsProvider({ children }) {
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState([]);
 
-  const likePost = useCallback((postId, userId) => {
-    setPosts((prev) =>
-      prev.map((post) =>
-        post.id === postId && !post.likedBy.includes(userId)
-          ? { ...post, likes: post.likes + 1, likedBy: [...post.likedBy, userId] }
-          : post
-      )
-    );
-  }, []);
+  useEffect(() => {
+    postService
+      .getAll()
+      .then(returnedPosts => {
+        setPosts(returnedPosts)
+      })
+      .catch(error => {
+        console.error("Failed to fetch posts:", error)
+      })
+  }, [])
+
+  const likePost = useCallback(async (postId, userId) => {
+    const postToLike = posts.find(p => p.id === postId);
+
+    if (!postToLike || postToLike.likedBy.includes(userId)) return;
+
+    const updatedPost = {
+      ...postToLike,
+      likes: postToLike.likes + 1,
+      likedBy: [...postToLike.likedBy, userId]
+    };
+
+    try {
+      const returnedPost = await postService.update(postId, updatedPost);
+      setPosts(prev => prev.map(p => p.id !== postId ? p : returnedPost));
+    } catch (error) {
+      console.error("Failed to like post:", error);
+      alert("Could not save like. Please try again.");
+    }
+  }, [posts]);
 
   const unlikePost = useCallback((postId, userId) => {
     setPosts((prev) =>
