@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseUrl = '/api/posts'
+const baseUrl = import.meta.env.PROD
+	? `${import.meta.env.VITE_BACKEND_URL}/api/posts`
+	: '/api/posts'
 
 const getAll = () => {
 	const request = axios.get(baseUrl)

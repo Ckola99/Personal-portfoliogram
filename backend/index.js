@@ -8,8 +8,9 @@ const app = express();
 
 const allowedOrigins = [
 	'http://localhost:5173',
-	'https://personal-portfoliogram.vercel.app/'
+	'https://personal-portfoliogram.vercel.app'
 ];
+
 const corsOptions = {
 	origin: function (origin, callback) {
 		if (!origin) return callback(null, true);
