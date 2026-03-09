@@ -96,7 +96,8 @@ export const reels = [
   {
     id: 'r1',
     thumbnail: '/reels/robot-demo-thumb.jpg',
-    videoUrl: '/reels/robot-demo.mp4',
+    videoUrl: '', // You can leave this empty or remove it
+    youtubeUrl: 'https://youtube.com/shorts/YOUR_VIDEO_ID_1',
     title: 'Robot Worlds Demo',
     description: 'See the distributed robot control system in action with real-time commands and world state updates.',
     githubUrl: 'https://github.com/Ckola99/Robot-worlds-brownfields',
@@ -108,7 +109,8 @@ export const reels = [
   {
     id: 'r2',
     thumbnail: '/reels/kanban-demo-thumb.jpg',
-    videoUrl: '/reels/kanban-demo.mp4',
+    videoUrl: '',
+    youtubeUrl: 'https://youtube.com/shorts/YOUR_VIDEO_ID_2',
     title: 'Kanban App Walkthrough',
     description: 'Full walkthrough of the React-based task management application with drag-and-drop features.',
     githubUrl: 'https://github.com/Ckola99/Kanban-webapp',
@@ -120,7 +122,8 @@ export const reels = [
   {
     id: 'r3',
     thumbnail: '/reels/cloud-funfacts-thumb.jpg',
-    videoUrl: '/reels/Video_260118122544_FreeExport.mp4',
+    videoUrl: '',
+    youtubeUrl: 'https://youtube.com/shorts/YOUR_VIDEO_ID_3',
     title: 'AWS FunFacts Generator',
     description: 'Demo of the serverless application generating cloud facts with AI enhancement via AWS Bedrock.',
     githubUrl: 'https://github.com/Ckola99/CloudFunFacts',

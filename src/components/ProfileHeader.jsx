@@ -3,7 +3,7 @@ import {
   ChevronDown,
   Github,
   Linkedin,
-  Download,
+  Eye,
   MapPin,
   Mail,
   Check,
@@ -26,13 +26,9 @@ export default function ProfileHeader() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/ChristopherAmenKola_CV2026.pdf';
-    link.download = 'ChristopherAmenKola_CV2026.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleCVAction = () => {
+    const cvUrl = '/ChristopherAmenKola_CV2026.pdf';
+    window.open(cvUrl, '_blank');
   };
 
   return (
@@ -125,10 +121,10 @@ export default function ProfileHeader() {
 
                 {/* Download CV Button */}
                 <button
-                  onClick={handleDownloadCV}
+                  onClick={handleCVAction}
                   className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 border border-border rounded-lg font-medium text-xs sm:text-sm hover:bg-secondary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>CV</span>
                 </button>
               </div>
