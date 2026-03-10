@@ -15,5 +15,3 @@ const update = (id, newObject) => {
 
 export default { getAll, update }
 
-
-// mongodb+srv://christopherkola_db_user:<db_password>@phonebookapp.qsatqsa.mongodb.net/?appName=phonebookApp
