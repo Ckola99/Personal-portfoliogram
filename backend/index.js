@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const Post = require('./models/post')
+const logger = require('./utils/logger')
 
 const app = express();
 
@@ -78,25 +79,23 @@ app.delete('/api/posts/:id', (request, response, next) => {
 app.put('/api/posts/:id', (request, response, next) => {
 	const body = request.body;
 
-	const postIndex = posts.findIndex(p => p.id === id);
-
-	if (postIndex === -1) {
-		return response.status(404).json({ error: 'Post not found' });
-	}
-
-	const post = {
-		...posts[postIndex],
-		likes: body.likes !== undefined ? body.likes : posts[postIndex].likes,
-		likedBy: body.likedBy || posts[postIndex].likedBy,
-		caption: body.caption || posts[postIndex].caption,
-		comments: body.comments || posts[postIndex].comments
+	const postUpdate = {
+		likes: body.likes,
+		likedBy: body.likedBy,
+		caption: body.caption,
+		comments: body.comments
 	};
 
-	Post.findByIdAndUpdate(request.params.id, post, { new: true, runValidators: true, context: 'query' })
+	Post.findByIdAndUpdate(request.params.id, postUpdate, { new: true, runValidators: true, context: 'query' })
 		.then(updatedPost => {
-			response.json(updatedPost)
+			if (updatedPost) {
+				logger.info(`Updated post ${request.params.id} successfully`);
+				response.json(updatedPost);
+			} else {
+				response.status(404).end();
+			}
 		})
-		.catch(error => next(error))
+		.catch(error => next(error));
 });
 
 // POST (Create) a new post
@@ -124,9 +123,10 @@ app.post('/api/posts', (request, response) => {
 
 	post.save()
 		.then(savedPost => {
-			response.status(201).json(savedPost)
+			logger.info(`Post created with ID: ${savedPost.id}`);
+			response.status(201).json(savedPost);
 		})
-		.catch(error => next(error))
+		.catch(error => next(error));
 });
 
 // --- ERROR HANDLING ---
@@ -138,16 +138,16 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint);
 
 const errorHandler = (error, request, response, next) => {
-	console.error(error.message)
+	logger.error(error.message); // Using our custom logger
 
 	if (error.name === 'CastError') {
-		return response.status(400).send({ error: 'malformatted id' })
+		return response.status(400).send({ error: 'malformatted id' });
 	} else if (error.name === 'ValidationError') {
-		return response.status(400).json({ error: error.message })
+		return response.status(400).json({ error: error.message });
 	}
 
-	next(error)
-}
+	next(error);
+};
 app.use(errorHandler)
 
 // --- SERVER START ---
