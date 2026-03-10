@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const Post = require('./models/post')
 const logger = require('./utils/logger')
+const config = require('./utils/config')
 
 const app = express();
 
