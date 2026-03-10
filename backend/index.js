@@ -86,7 +86,7 @@ app.put('/api/posts/:id', (request, response, next) => {
 		comments: body.comments
 	};
 
-	Post.findByIdAndUpdate(request.params.id, postUpdate, { new: true, runValidators: true, context: 'query' })
+	Post.findByIdAndUpdate(request.params.id, postUpdate, { returnDocument: 'after', runValidators: true, context: 'query' })
 		.then(updatedPost => {
 			if (updatedPost) {
 				logger.info(`Updated post ${request.params.id} successfully`);
