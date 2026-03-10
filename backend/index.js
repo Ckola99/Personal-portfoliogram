@@ -1,6 +1,8 @@
+require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const Post = require('./models/post')
 
 const app = express();
 
@@ -30,8 +32,8 @@ app.use(express.json());
 
 
 morgan.token('body', (req) => {
-	return req.method === 'POST' ? JSON.stringify(req.body) : '';
-});
+	return ['POST', 'PUT'].includes(req.method) ? JSON.stringify(req.body) : ''
+})
 
 const morganFormat = ':method :url :status :res[content-length] - :response-time ms :body';
 app.use(morgan(morganFormat));
@@ -115,35 +117,36 @@ app.get('/', (request, response) => {
 	response.send('<h1>Portfoliogram API</h1><p>Use /api/posts to see data</p>');
 });
 
-// GET all posts
+// GET all posts from MongoDB
 app.get('/api/posts', (request, response) => {
-	response.json(posts);
-});
+	Post.find({}).then(posts => {
+		response.json(posts)
+	})
+})
 
-// GET a single post by ID
-app.get('/api/posts/:id', (request, response) => {
-	const id = request.params.id;
-	const post = posts.find((p) => p.id === id);
-
-	if (post) {
-		response.json(post);
-	} else {
-		// SRE best practice: give a descriptive error for 404s
-		response.status(404).json({ error: `Post with id ${id} not found` });
-	}
-});
+// GET single post by ID
+app.get('/api/posts/:id', (request, response, next) => {
+	Post.findById(request.params.id)
+		.then(post => {
+			if (post) {
+				response.json(post)
+			} else {
+				response.status(404).end()
+			}
+		})
+		.catch(error => next(error)) // Pass errors to error handler
+})
 
 // DELETE a post
-app.delete('/api/posts/:id', (request, response) => {
-	const id = request.params.id;
-	posts = posts.filter((p) => p.id !== id);
+app.delete('/api/posts/:id', (request, response, next) => {
+	Post.findByIdAndDelete(request.params.id)
+		.then(() => {
+			response.status(204).end()
+		})
+		.catch(error => next(error))
+})
 
-	// 204 No Content
-	response.status(204).end();
-});
-
-app.put('/api/posts/:id', (request, response) => {
-	const id = request.params.id;
+app.put('/api/posts/:id', (request, response, next) => {
 	const body = request.body;
 
 	const postIndex = posts.findIndex(p => p.id === id);
@@ -152,7 +155,7 @@ app.put('/api/posts/:id', (request, response) => {
 		return response.status(404).json({ error: 'Post not found' });
 	}
 
-	const updatedPost = {
+	const post = {
 		...posts[postIndex],
 		likes: body.likes !== undefined ? body.likes : posts[postIndex].likes,
 		likedBy: body.likedBy || posts[postIndex].likedBy,
@@ -160,9 +163,11 @@ app.put('/api/posts/:id', (request, response) => {
 		comments: body.comments || posts[postIndex].comments
 	};
 
-	posts[postIndex] = updatedPost;
-	console.log(`[UPDATE] Post ${id} - Likes: ${updatedPost.likes}, LikedBy Count: ${updatedPost.likedBy.length}`);
-	response.json(updatedPost);
+	Post.findByIdAndUpdate(request.params.id, post, { new: true, runValidators: true, context: 'query' })
+		.then(updatedPost => {
+			response.json(updatedPost)
+		})
+		.catch(error => next(error))
 });
 
 // POST (Create) a new post
@@ -177,7 +182,6 @@ app.post('/api/posts', (request, response) => {
 	}
 
 	const newPost = {
-		id: String(Math.floor(Math.random() * 1000000)), // Simple random ID
 		image: body.image,
 		caption: body.caption,
 		likes: 0,
@@ -189,8 +193,11 @@ app.post('/api/posts', (request, response) => {
 		tags: body.tags || [],
 	};
 
-	posts = posts.concat(newPost);
-	response.status(201).json(newPost); // 201 Created
+	post.save()
+		.then(savedPost => {
+			response.status(201).json(savedPost)
+		})
+		.catch(error => next(error))
 });
 
 // --- ERROR HANDLING ---
@@ -200,6 +207,19 @@ const unknownEndpoint = (request, response) => {
 	response.status(404).send({ error: 'unknown endpoint' });
 };
 app.use(unknownEndpoint);
+
+const errorHandler = (error, request, response, next) => {
+	console.error(error.message)
+
+	if (error.name === 'CastError') {
+		return response.status(400).send({ error: 'malformatted id' })
+	} else if (error.name === 'ValidationError') {
+		return response.status(400).json({ error: error.message })
+	}
+
+	next(error)
+}
+app.use(errorHandler)
 
 // --- SERVER START ---
 const PORT = process.env.PORT || 3001;
