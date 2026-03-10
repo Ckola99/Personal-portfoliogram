@@ -38,77 +38,6 @@ morgan.token('body', (req) => {
 const morganFormat = ':method :url :status :res[content-length] - :response-time ms :body';
 app.use(morgan(morganFormat));
 
-// --- DATA ---
-let posts = [
-	{
-		id: '1',
-		image: '/projects/robot-worlds.jpg',
-		caption: '🤖 Robot Worlds Platform — Modernized a legacy distributed robot-control system with Java, Docker, and CI/CD pipelines. Built a Web API layer using Javalin and refactored the monolithic TCP robot-engine into a modular architecture.',
-		likes: 156,
-		likedBy: [],
-		comments: [
-			{
-				id: 'c1',
-				postId: '1',
-				userId: 'u1',
-				username: 'techrecruiter_sa',
-				avatar: '/avatars/user1.jpg',
-				text: 'Impressive work on the brownfields modernization! 💪',
-				createdAt: '2026-02-20T10:30:00Z',
-			},
-		],
-		githubUrl: 'https://github.com/Ckola99/Robot-worlds-brownfields',
-		projectUrl: '',
-		createdAt: '2026-02-15T14:00:00Z',
-		tags: ['Java', 'Docker', 'CI/CD', 'TCP', 'SQL'],
-	},
-	{
-		id: '2',
-		image: '/projects/kanban-app.jpg',
-		caption: '📋 Kanban Task Management Web App — Built a responsive task management dashboard using React. Features drag-and-drop functionality, real-time updates, and a clean, intuitive UI.',
-		likes: 89,
-		likedBy: [],
-		comments: [],
-		githubUrl: 'https://github.com/Ckola99/Kanban-webapp',
-		projectUrl: '',
-		createdAt: '2026-01-10T16:30:00Z',
-		tags: ['React', 'JavaScript', 'CSS3', 'HTML5'],
-	},
-	{
-		id: '3',
-		image: '/projects/cloud-funfacts.jpg',
-		caption: '☁️ AWS Cloud FunFacts Generator — Fully serverless cloud application using AWS Lambda, API Gateway, DynamoDB, and Bedrock AI. Automated provisioning with Python boto3 and AWS CLI.',
-		likes: 234,
-		likedBy: [],
-		comments: [
-			{
-				id: 'c2',
-				postId: '3',
-				userId: 'u2',
-				username: 'cloudenthusiast',
-				avatar: '/avatars/user2.jpg',
-				text: 'Love the serverless architecture! Great use of Bedrock 🚀',
-				createdAt: '2026-02-25T08:15:00Z',
-			},
-		],
-		githubUrl: 'https://github.com/Ckola99/CloudFunFacts',
-		projectUrl: '',
-		createdAt: '2026-02-01T11:00:00Z',
-		tags: ['AWS', 'Lambda', 'DynamoDB', 'Python', 'Serverless'],
-	},
-	{
-		id: '4',
-		image: '/projects/commit-gen.jpg',
-		caption: '🤖 CommitGen — AI-powered Git CLI tool that analyzes staged diffs and generates Conventional Commit-compliant messages using OpenAI GPT API. Containerized with Docker and deployed to PyPI.',
-		likes: 178,
-		likedBy: [],
-		comments: [],
-		githubUrl: 'https://github.com/Ckola99/commit-gen',
-		projectUrl: '',
-		createdAt: '2025-12-20T09:45:00Z',
-		tags: ['Python', 'OpenAI', 'Docker', 'CLI', 'Git'],
-	},
-];
 
 // --- ROUTES ---
 
@@ -181,7 +110,7 @@ app.post('/api/posts', (request, response) => {
 		});
 	}
 
-	const newPost = {
+	const post = {
 		image: body.image,
 		caption: body.caption,
 		likes: 0,
