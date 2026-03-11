@@ -6,12 +6,19 @@ const postSchema = new mongoose.Schema({
 	image: String,
 	caption: String,
 	likes: Number,
-	likedBy: [String],
+	likedBy: [ String ],
 	githubUrl: String,
 	projectUrl: String,
 	tags: [String],
 	createdAt: Date,
-	comments: Array
+	comments: [
+		{
+			userId: String,
+			username: String,
+			text: String,
+			createdAt: { type: Date, default: Date.now }
+		}
+	]
 })
 
 postSchema.set('toJSON', {

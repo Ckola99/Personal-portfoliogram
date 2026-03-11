@@ -17,42 +17,35 @@ export function PostsProvider({ children }) {
       })
   }, [])
 
-  const likePost = useCallback(async (postId, userId) => {
-    const postToLike = posts.find(p => p.id === postId);
+  // A helper function to safely extract IDs (DRY - Don't Repeat Yourself)
+  const getUserId = (user) => (user.id || user._id || user).toString();
 
-    if (!postToLike || postToLike.likedBy.includes(userId)) return;
+  const toggleLike = useCallback(async (postId, userId) => {
+    const postToUpdate = posts.find(p => p.id === postId);
+
+    // Safety check: Exit if post doesn't exist
+    if (!postToUpdate) return;
+
+    // Safely check if user liked it
+    const isCurrentlyLiked = Array.isArray(postToUpdate.likedBy) &&
+      postToUpdate.likedBy.some(u => getUserId(u) === userId.toString());
+
+    // Calculate new values
+    const updatedLikedBy = isCurrentlyLiked
+      ? postToUpdate.likedBy.filter(u => getUserId(u) !== userId.toString()) // Remove
+      : [...(postToUpdate.likedBy || []), userId]; // Add
 
     const updatedPost = {
-      ...postToLike,
-      likes: postToLike.likes + 1,
-      likedBy: [...postToLike.likedBy, userId]
+      ...postToUpdate,
+      likes: isCurrentlyLiked ? Math.max(0, postToUpdate.likes - 1) : postToUpdate.likes + 1,
+      likedBy: updatedLikedBy
     };
 
     try {
       const returnedPost = await postService.update(postId, updatedPost);
-      setPosts(prev => prev.map(p => p.id !== postId ? p : returnedPost));
+      setPosts(prev => prev.map(p => p.id === postId ? returnedPost : p));
     } catch (error) {
-      console.error("Failed to like post:", error);
-      alert("Could not save like. Please try again.");
-    }
-  }, [posts]);
-
-  const unlikePost = useCallback(async (postId, userId) => {
-    const postToUnlike = posts.find(p => p.id === postId)
-
-    if (!postToUnlike || !postToUnlike.likedBy.includes(userId)) return;
-
-    const updatedPost = {
-      ...postToUnlike,
-      likes: Math.max(0, postToUnlike.likes - 1),
-      likedBy: postToUnlike.likedBy.filter(id => id !== userId)
-    };
-
-    try {
-      const returnedPost = await postService.update(postId, updatedPost);
-      setPosts(prev => prev.map(p => p.id !== postId ? p : returnedPost));
-    } catch (error) {
-      console.error("Failed to unlike post:", error);
+      console.error("Toggle like failed:", error);
     }
   }, [posts]);
 
@@ -132,7 +125,12 @@ export function PostsProvider({ children }) {
   const hasLiked = useCallback(
     (postId, userId) => {
       const post = posts.find((p) => p.id === postId);
-      return post ? post.likedBy.includes(userId) : false;
+
+      if (!post || !Array.isArray(post.likedBy)) return false;
+      return post.likedBy.some(user => {
+        const currentUserId = user.id || user._id || user;
+        return currentUserId.toString() === userId.toString();
+      })
     },
     [posts]
   );
@@ -141,8 +139,7 @@ export function PostsProvider({ children }) {
     <PostsContext.Provider
       value={{
         posts,
-        likePost,
-        unlikePost,
+        toggleLike,
         addComment,
         deleteComment,
         replyToComment,

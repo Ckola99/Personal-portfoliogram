@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, MessageCircle, Send, Bookmark, Github, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { usePosts } from '@/context/PostsContext';
@@ -6,7 +6,7 @@ import LoginModal from './LoginModal';
 
 export default function PostCard({ post, isAdmin = false }) {
   const { user, isLoggedIn } = useAuth();
-  const { likePost, unlikePost, addComment, deleteComment, deletePost, hasLiked } = usePosts();
+  const { toggleLike, addComment, deleteComment, deletePost, hasLiked } = usePosts();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [commentText, setCommentText] = useState('');
@@ -16,21 +16,25 @@ export default function PostCard({ post, isAdmin = false }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const CHAR_LIMIT = 100;
 
-  const handleLike = () => {
+  useEffect(() => {
+    if (user) {
+      setIsLiked(hasLiked(post.id, user.id));
+    }
+    setLocalLikes(post.likes);
+  }, [post, user, hasLiked]);
+
+  const handleLike = async() => {
     if (!isLoggedIn) {
       setShowLoginModal(true);
       return;
     }
 
     if (user) {
-      if (isLiked) {
-        unlikePost(post.id, user.id);
-        setLocalLikes((prev) => prev - 1);
-      } else {
-        likePost(post.id, user.id);
-        setLocalLikes((prev) => prev + 1);
-      }
-      setIsLiked(!isLiked);
+      const newLikeStatus = !isLiked;
+      setIsLiked(newLikeStatus);
+      setLocalLikes(prev => newLikeStatus ? prev + 1 : prev - 1);
+
+      await toggleLike(post.id, user.id)
     }
   };
 
