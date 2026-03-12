@@ -72,12 +72,16 @@ export default function ProfileHeader() {
           <div className="flex-1 w-full animate-slide-up" style={{ animationDelay: '0.2s' }}>
             {/* Username and Actions */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <div className="flex items-center gap-2 mx-auto">
-                <h1 className="text-lg sm:text-xl font-semibold text-center sm:text-left animate-fade-in">{user?.username === 'ChristopherKola' ? 'ChristopherKola (Admin)' : 'ChristopherKola'}</h1>
-                <BadgeCheck
-                  className="w-4 h-4 sm:w-4 sm:h-4 fill-[#0095f6] text-black"
-                  title="Verified Account"
-                />
+              <div className="flex flex-col items-center sm:items-start gap-1">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-lg sm:text-xl font-semibold animate-fade-in">
+                    {user?.username === 'ChristopherKola' ? 'ChristopherKola (Admin)' : 'ChristopherKola'}
+                  </h1>
+                  <BadgeCheck
+                    className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0095f6] text-white"
+                    title="Verified Account"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-center sm:justify-start gap-2">
