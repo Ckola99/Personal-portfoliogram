@@ -92,7 +92,7 @@ export default function PostCard({ post, isAdmin = false }) {
             </div>
             <div className="flex items-center gap-1">
               <span className="font-semibold text-xs sm:text-sm">christopherkola</span>
-              <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#0095f6] text-black" />
+              <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#0095f6] text-white" />
             </div>
           </div>
           {isAdmin && (
