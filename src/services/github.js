@@ -5,17 +5,10 @@ const baseUrl = `https://api.github.com/users/${username}`;
 
 export const getGithubStats = async () => {
 	try {
-		const userResponse = await axios.get(baseUrl);
-
-		const reposResponse = await axios.get(`${baseUrl}/repos?per_page=100`);
-		const totalRepos = userResponse.data.public_repos;
-
-		return {
-			repos: totalRepos,
-			following: userResponse.data.following
-		};
+		const response = await axios.get('/api/github/stats');
+		return response.data;
 	} catch (error) {
-		console.error("Error fetching GitHub data:", error);
+		console.error("Error fetching live GitHub stats:", error);
 		return null;
 	}
 };

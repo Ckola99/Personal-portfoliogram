@@ -8,31 +8,33 @@ import {
   Mail,
   Check,
   UserPlus,
-  BadgeCheck
+  BadgeCheck,
+  Loader2
 } from 'lucide-react';
 import { socialLinks } from '@/data/portfolioData';
 import { usePosts } from '@/context/PostsContext';
 import { getGithubStats } from '@/services/github';
 import { useAuth } from '../context/AuthContext';
+import StatItem from './StatItem';
 
 
 export default function ProfileHeader() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const dropdownRef = useRef(null);
-  const { posts } = usePosts(); // Get real posts array
-  const [githubData, setGithubData] = useState({ commits: '2k+', repos: 0 });
+  const { posts } = usePosts();
+  const [githubData, setGithubData] = useState({ commits: 0, repos: 0 });
   const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
+      setLoading(true);
       const stats = await getGithubStats();
       if (stats) {
-        setGithubData({
-          commits: '2,055', // Commits are hard to get via public API without a token, keeping your stat as a placeholder or using a contributor tool
-          repos: stats.repos
-        });
+        setGithubData(stats)
       }
+      setLoading(false);
     }
     fetchStats();
   }, []);
@@ -163,18 +165,9 @@ export default function ProfileHeader() {
 
             {/* Stats with stagger animation */}
             <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 mb-3 sm:mb-4">
-              <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <span className="font-semibold text-sm sm:text-base">{posts.length}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">posts</span>
-              </div>
-              <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <span className="font-semibold text-sm sm:text-base">{githubData.commits}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">commits</span>
-              </div>
-              <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <span className="font-semibold text-sm sm:text-base">{githubData.repos}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">repositories</span>
-              </div>
+              <StatItem label="posts" value={posts.length} delay="0.3s" loading={loading}/>
+              <StatItem label="commits" value={githubData.commits} delay="0.4s" loading={loading}/>
+              <StatItem label="repositories" value={githubData.repos} delay="0.5s" loading={loading}/>
             </div>
 
             {/* Bio */}
