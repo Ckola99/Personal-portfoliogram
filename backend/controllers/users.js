@@ -1,5 +1,4 @@
 const usersRouter = require('express').Router()
-const { nextDay } = require('date-fns/nextDay')
 const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
