@@ -40,6 +40,8 @@ export default async function handler(req, res) {
 			return acc + (repo.defaultBranchRef?.target?.history?.totalCount || 0);
 		}, 0);
 
+		res.setHeader('Cache-Control', 's-maxage=3600');
+
 		res.status(200).json({
 			repos: user.repositories.totalCount,
 			commits: allTimeCommits,
