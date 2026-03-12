@@ -1,0 +1,21 @@
+backend
+ ┣ controllers
+ ┃ ┣ github.js
+ ┃ ┣ posts.js
+ ┃ ┗ users.js
+ ┣ models
+ ┃ ┣ post.js
+ ┃ ┗ user.js
+ ┣ node_modules
+ ┣ utils
+ ┃ ┣ config.js
+ ┃ ┣ logger.js
+ ┃ ┗ middleware.js
+ ┣ .env
+ ┣ .gitignore
+ ┣ app.js
+ ┣ index.js
+ ┣ mongo.js
+ ┣ package-lock.json
+ ┣ package.json
+ ┗ seed.js
