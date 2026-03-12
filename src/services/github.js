@@ -5,11 +5,9 @@ const baseUrl = import.meta.env.PROD
 	? `${import.meta.env.VITE_BACKEND_URL}/api/github/stats`
 	: '/api/github/stats';
 
-console.log(baseUrl)
-
 export const getGithubStats = async () => {
 	try {
-		const response = await axios.get('/api/github/stats');
+		const response = await axios.get(baseUrl);
 		return response.data;
 	} catch (error) {
 		console.error("Error fetching live GitHub stats:", error);
