@@ -34,9 +34,6 @@ function ReelCard({ reel, index }) {
       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
         <h3 className="text-white font-semibold text-xs sm:text-sm mb-0.5 line-clamp-1">{reel.title}</h3>
         <p className="text-white/80 text-[10px] sm:text-xs line-clamp-2">{reel.description}</p>
-        <div className="flex items-center gap-2 mt-1.5 text-white/60 text-[10px]">
-          <span>{reel.views.toLocaleString()} views</span>
-        </div>
       </div>
 
       {/* Side Actions (Handles GitHub and Share) */}

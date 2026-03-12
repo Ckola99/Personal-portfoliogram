@@ -7,14 +7,35 @@ import {
   MapPin,
   Mail,
   Check,
-  UserPlus
+  UserPlus,
+  BadgeCheck
 } from 'lucide-react';
-import { socialLinks, profileStats } from '@/data/portfolioData';
+import { socialLinks } from '@/data/portfolioData';
+import { usePosts } from '@/context/PostsContext';
+import { getGithubStats } from '@/services/github';
+import { useAuth } from '../context/AuthContext';
+
 
 export default function ProfileHeader() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const dropdownRef = useRef(null);
+  const { posts } = usePosts(); // Get real posts array
+  const [githubData, setGithubData] = useState({ commits: '2k+', repos: 0 });
+  const { user } = useAuth();
+
+  useEffect(() => {
+    async function fetchStats() {
+      const stats = await getGithubStats();
+      if (stats) {
+        setGithubData({
+          commits: '2,055', // Commits are hard to get via public API without a token, keeping your stat as a placeholder or using a contributor tool
+          repos: stats.repos
+        });
+      }
+    }
+    fetchStats();
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -42,7 +63,7 @@ export default function ProfileHeader() {
               <img
                 src="/profile-photo.jpg"
                 alt="Christopher Kola"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-bottom"
               />
             </div>
           </div>
@@ -51,7 +72,13 @@ export default function ProfileHeader() {
           <div className="flex-1 w-full animate-slide-up" style={{ animationDelay: '0.2s' }}>
             {/* Username and Actions */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <h1 className="text-lg sm:text-xl font-semibold text-center sm:text-left animate-fade-in">christopherkola</h1>
+              <div className="flex items-center gap-2 mx-auto">
+                <h1 className="text-lg sm:text-xl font-semibold text-center sm:text-left animate-fade-in">{user?.username === 'ChristopherKola' ? 'ChristopherKola (Admin)' : 'ChristopherKola'}</h1>
+                <BadgeCheck
+                  className="w-4 h-4 sm:w-4 sm:h-4 fill-[#0095f6] text-black"
+                  title="Verified Account"
+                />
+              </div>
 
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 {/* Following Dropdown */}
@@ -133,16 +160,16 @@ export default function ProfileHeader() {
             {/* Stats with stagger animation */}
             <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 mb-3 sm:mb-4">
               <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <span className="font-semibold text-sm sm:text-base">{profileStats.projects}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">projects</span>
+                <span className="font-semibold text-sm sm:text-base">{posts.length}</span>
+                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">posts</span>
               </div>
               <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <span className="font-semibold text-sm sm:text-base">{profileStats.followers.toLocaleString()}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">followers</span>
+                <span className="font-semibold text-sm sm:text-base">{githubData.commits}</span>
+                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">commits</span>
               </div>
               <div className="text-center sm:text-left animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <span className="font-semibold text-sm sm:text-base">{profileStats.following.toLocaleString()}</span>
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">following</span>
+                <span className="font-semibold text-sm sm:text-base">{githubData.repos}</span>
+                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">repositories</span>
               </div>
             </div>
 

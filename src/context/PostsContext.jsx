@@ -80,9 +80,14 @@ export function PostsProvider({ children }) {
     const postToUpdate = posts.find((p) => p.id === postId);
     if (!postToUpdate) return;
 
+    const updatedComments = postToUpdate.comments.filter(c => {
+      const cId = c.id || c._id
+      return cId.toString() !== commentId.toString()
+    })
+
     const updatedPost = {
       ...postToUpdate,
-      comments: postToUpdate.comments.filter((c) => c.id !== commentId),
+      comments: updatedComments,
     };
 
     try {

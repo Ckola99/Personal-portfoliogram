@@ -1,22 +1,36 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import loginService from '../services/login'
 
 const AuthContext = createContext(undefined);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  const login = useCallback((username) => {
-    const isAdmin = username === 'ChocoMan';
-    const newUser = {
-      id: `user_${Date.now()}`,
-      username,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
-      isAdmin,
-    };
-    setUser(newUser);
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedPortfolioUser');
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
+  }, []);
+
+  const login = useCallback(async (username) => {
+    try {
+      const authenticatedUser = await loginService.login(username);
+
+      window.localStorage.setItem(
+        'loggedPortfolioUser', JSON.stringify(authenticatedUser)
+      );
+
+      setUser(authenticatedUser);
+    } catch (error) {
+      console.error("Login failed", error);
+      alert("Could not log in");
+    }
   }, []);
 
   const logout = useCallback(() => {
+    window.localStorage.removeItem('loggedPortfolioUser');
     setUser(null);
   }, []);
 

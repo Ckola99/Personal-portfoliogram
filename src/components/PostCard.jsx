@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart, MessageCircle, Send, Bookmark, Github, MoreHorizontal, Trash2 } from 'lucide-react';
+import { Heart, MessageCircle, Send, Bookmark, Github, MoreHorizontal, Trash2, BadgeCheck } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { usePosts } from '@/context/PostsContext';
 import LoginModal from './LoginModal';
@@ -83,10 +83,17 @@ export default function PostCard({ post, isAdmin = false }) {
         {/* Post Header */}
         <div className="flex items-center justify-between p-3 sm:p-4 shrink-0">
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-              <span className="text-xs sm:text-sm font-semibold">CK</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-secondary border border-border transition-transform duration-300 hover:scale-110">
+              <img
+                src="/profile-photo.jpg"
+                alt="Christopher Kola"
+                className="w-full h-full object-cover object-bottom"
+              />
             </div>
-            <span className="font-semibold text-xs sm:text-sm">christopherkola</span>
+            <div className="flex items-center gap-1">
+              <span className="font-semibold text-xs sm:text-sm">christopherkola</span>
+              <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#0095f6] text-black" />
+            </div>
           </div>
           {isAdmin && (
             <div className="relative">
@@ -214,7 +221,7 @@ export default function PostCard({ post, isAdmin = false }) {
             <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4 max-h-48 sm:max-h-60 overflow-y-auto">
               {post.comments.map((comment, idx) => (
                 <div
-                  key={comment.id}
+                  key={comment.id || comment._id || idx}
                   className="flex items-start gap-2 sm:gap-3 animate-fade-in"
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >

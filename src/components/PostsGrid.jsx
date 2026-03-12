@@ -5,7 +5,7 @@ import PostCard from './PostCard';
 export default function PostsGrid() {
   const { posts } = usePosts();
   const { user } = useAuth();
-  const isAdmin = user?.username === 'ChocoMan';
+  const isAdmin = user?.isAdmin;
 
   return (
     <div className="py-4 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-350px)]">
