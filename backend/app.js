@@ -24,6 +24,10 @@ app.use(express.static('dist'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
+app.get('/api/ping', (req, res) => {
+	res.status(200).send('pong');
+});
+
 app.use('/api/posts', postsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/github', githubRouter)
