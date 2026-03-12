@@ -5,15 +5,19 @@ const PostsContext = createContext(undefined);
 
 export function PostsProvider({ children }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true)
     postService
       .getAll()
       .then(returnedPosts => {
         setPosts(returnedPosts)
+        setLoading(false)
       })
       .catch(error => {
         console.error("Failed to fetch posts:", error)
+        setLoading(false)
       })
   }, [])
 
@@ -144,6 +148,7 @@ export function PostsProvider({ children }) {
     <PostsContext.Provider
       value={{
         posts,
+        loading,
         toggleLike,
         addComment,
         deleteComment,
