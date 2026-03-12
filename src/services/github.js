@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const username = 'Ckola99';
-const baseUrl = `https://api.github.com/users/${username}`;
+const baseUrl = import.meta.env.PROD
+	? `${import.meta.env.VITE_BACKEND_URL}/api/github/stats`
+	: '/api/github/stats';
 
 export const getGithubStats = async () => {
 	try {

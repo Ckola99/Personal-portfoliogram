@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseUrl = '/api/users'
+const baseUrl = import.meta.env.PROD
+	? `${import.meta.env.VITE_BACKEND_URL}/api/users`
+	: '/api/users'
 
 const login = async (username) => {
 	// We send the username to the backend
