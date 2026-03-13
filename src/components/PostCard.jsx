@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart, MessageCircle, Send, Bookmark, Github, MoreHorizontal, Trash2, BadgeCheck } from 'lucide-react';
+import { Heart, MessageCircle, Send, Bookmark, Github, MoreHorizontal, Trash2, BadgeCheck, SquareArrowOutUpRight } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { usePosts } from '@/context/PostsContext';
 import LoginModal from './LoginModal';
@@ -77,6 +77,8 @@ export default function PostCard({ post, isAdmin = false }) {
     ? post.caption
     : `${post.caption.substring(0, CHAR_LIMIT)}...`;
 
+  console.log(post.projectUrl)
+
   return (
     <>
       <article className="flex flex-col h-full bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/20">
@@ -125,16 +127,31 @@ export default function PostCard({ post, isAdmin = false }) {
             alt={post.caption}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          {post.githubUrl && (
-            <a
-              href={post.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 bg-black/50 backdrop-blur-sm rounded-full text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-black/70"
-            >
-              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-          )}
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+
+            {post.githubUrl && (
+              <a
+                href={post.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 sm:p-2 bg-black/50 backdrop-blur-sm rounded-full text-white hover:scale-110 hover:bg-black/70 transition"
+              >
+                <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+            )}
+
+            {post.projectUrl && (
+              <a
+                href={post.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 sm:p-2 bg-black/50 backdrop-blur-sm rounded-full text-white hover:scale-110 hover:bg-black/70 transition"
+              >
+                <SquareArrowOutUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+            )}
+
+          </div>
         </div>
 
         {/* Post Actions */}

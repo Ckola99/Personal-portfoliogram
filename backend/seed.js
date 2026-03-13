@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 const Post = require('./models/post');
 const User = require('./models/user');
 
-// 1. Define the users that will exist in your database by default
 const initialUsers = [
 	{
-		username: 'ChristopherKola', // Your official public name
+		username: 'ChristopherKola',
 		isAdmin: true,
 		avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=ChristopherKola',
 		likes: [],
@@ -37,7 +36,7 @@ const seedDB = async () => {
 		// 2. Clear existing data to ensure a clean slate
 		await Post.deleteMany({});
 		await User.deleteMany({});
-		console.log('🧹 Old data cleared from collections.');
+		console.log(' Old data cleared from collections.');
 
 		// 3. Seed Users first so we can use their generated IDs in the Posts
 		const createdUsers = await User.insertMany(initialUsers);
@@ -52,58 +51,49 @@ const seedDB = async () => {
 		// 4. Define Posts with accurate references and IDs
 		const initialPosts = [
 			{
-				image: '/projects/robot-worlds.jpg',
-				caption: '🤖 Robot Worlds Platform — Modernized a legacy distributed robot-control system with Java, Docker, and CI/CD pipelines. Built a Web API layer using Javalin and refactored the monolithic TCP robot-engine into a modular architecture.',
-				likes: 1,
-				likedBy: [adminUser.id],
-				comments: [
-					{
-						_id: new mongoose.Types.ObjectId(), // Manual ID to prevent React key errors
-						userId: recruiter.id,
-						username: recruiter.username,
-						avatar: recruiter.avatar,
-						text: 'Impressive work on the brownfields modernization! 💪',
-						createdAt: new Date('2026-02-20T10:30:00Z'),
-					},
-				],
-				githubUrl: 'https://github.com/Ckola99/Robot-worlds-brownfields',
-				projectUrl: '',
-				createdAt: new Date('2026-02-15T14:00:00Z'),
-				tags: ['Java', 'Docker', 'CI/CD', 'TCP', 'SQL'],
-			},
-			{
-				image: '/projects/kanban-app.jpg',
-				caption: '📋 Kanban Task Management Web App — Built a responsive task management dashboard using React. Features drag-and-drop functionality, real-time updates, and a clean, intuitive UI.',
-				likes: 1,
-				likedBy: [fan.id],
-				comments: [],
-				githubUrl: 'https://github.com/Ckola99/Kanban-webapp',
-				projectUrl: '',
-				createdAt: new Date('2026-01-10T16:30:00Z'),
-				tags: ['React', 'JavaScript', 'CSS3', 'HTML5'],
-			},
-			{
-				image: '/projects/cloud-funfacts.jpg',
-				caption: '☁️ AWS Cloud FunFacts Generator — Fully serverless cloud application using AWS Lambda, API Gateway, DynamoDB, and Bedrock AI. Automated provisioning with Python boto3 and AWS CLI.',
-				likes: 0,
-				likedBy: [],
-				comments: [],
-				githubUrl: 'https://github.com/Ckola99/CloudFunFacts',
-				projectUrl: '',
-				createdAt: new Date('2026-02-01T11:00:00Z'),
-				tags: ['AWS', 'Lambda', 'DynamoDB', 'Python', 'Serverless'],
-			},
-			{
-				image: '/projects/commit-gen.jpg',
+				image: '/projects/commit-gen.png',
 				caption: '🤖 CommitGen — AI-powered Git CLI tool that analyzes staged diffs and generates Conventional Commit-compliant messages using OpenAI GPT API. Containerized with Docker and deployed to PyPI.',
 				likes: 0,
 				likedBy: [],
 				comments: [],
 				githubUrl: 'https://github.com/Ckola99/commit-gen',
 				projectUrl: '',
-				createdAt: new Date('2025-12-20T09:45:00Z'),
+				createdAt: new Date('2026-01-20T09:45:00Z'),
 				tags: ['Python', 'OpenAI', 'Docker', 'CLI', 'Git'],
 			},
+			{
+				image: '/projects/cloud-funfacts.png',
+				caption: '☁️ AWS Cloud FunFacts Generator — Fully serverless cloud application using AWS Lambda, API Gateway, DynamoDB, and Bedrock AI. Automated provisioning with Python boto3 and AWS CLI.',
+				likes: 0,
+				likedBy: [],
+				comments: [],
+				githubUrl: 'https://github.com/Ckola99/CloudFunFacts',
+				projectUrl: 'https://production.d11q6mprl0gz9y.amplifyapp.com/',
+				createdAt: new Date('2025-12-12T11:00:00Z'),
+				tags: ['AWS', 'Lambda', 'DynamoDB', 'Python', 'Serverless'],
+			},
+			{
+				image: '/projects/kanban-app.png',
+				caption: '📋 Kanban Task Management Web App — Built a responsive task management dashboard using React. Features drag-and-drop functionality, real-time updates, and a clean, intuitive UI.',
+				likes: 1,
+				likedBy: [fan.id],
+				comments: [],
+				githubUrl: 'https://github.com/Ckola99/Kanban-webapp',
+				projectUrl: 'https://kanban-webapp.vercel.app/',
+				createdAt: new Date('2025-01-11T16:30:00Z'),
+				tags: ['React', 'JavaScript', 'CSS3', 'HTML5'],
+			},
+			{
+				image: '/projects/audiophile-ecommerce.png',
+				caption: '🛒 Audiophile E-Commerce Frontend — Responsive React e-commerce application featuring dynamic product pages, Redux Toolkit global state management, shopping cart functionality, checkout flow, and modern UI styling with Tailwind CSS.',
+				likes: 0,
+				likedBy: [],
+				comments: [],
+				githubUrl: 'https://github.com/Ckola99/Ecom-site/tree/main/audiophileSite',
+				projectUrl: 'https://ecom-site-five.vercel.app/',
+				createdAt: new Date('2024-12-20T11:00:00Z'),
+				tags: ['React', 'Redux Toolkit', 'Tailwind CSS', 'E-commerce', 'Frontend'],
+			}
 		];
 
 		// 5. Insert the Posts into the database
