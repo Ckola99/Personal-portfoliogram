@@ -1,18 +1,34 @@
 // Portfolio Data
 
+import {
+  SiReact,
+  SiRedux,
+  SiPython,
+  SiOpenjdk,
+  SiDocker,
+  SiGithubactions,
+  SiLinux,
+  SiGit,
+  SiNodedotjs,
+  SiSqlite
+} from 'react-icons/si'
+
+import { FaAws } from "react-icons/fa";
+import { FaMasksTheater } from "react-icons/fa6";
+
 export const skills = [
-  { id: '1', name: 'React', icon: '⚛️', category: 'frontend' },
-  { id: '2', name: 'Redux', icon: '🔄', category: 'frontend' },
-  { id: '3', name: 'Python', icon: '🐍', category: 'backend' },
-  { id: '4', name: 'Java', icon: '☕', category: 'backend' },
-  { id: '5', name: 'Docker', icon: '🐳', category: 'devops' },
-  { id: '6', name: 'AWS', icon: '☁️', category: 'cloud' },
-  { id: '7', name: 'CI/CD', icon: '🚀', category: 'devops' },
-  { id: '8', name: 'Playwright', icon: '🎭', category: 'testing' },
-  { id: '9', name: 'Linux', icon: '🐧', category: 'devops' },
-  { id: '10', name: 'Git', icon: '📊', category: 'devops' },
-  { id: '11', name: 'Node.js', icon: '🟢', category: 'backend' },
-  { id: '12', name: 'SQL', icon: '🗄️', category: 'backend' },
+  { id: '1', name: 'React', icon: SiReact, category: 'frontend', color: '#61DAFB' },
+  { id: '2', name: 'Redux', icon: SiRedux, category: 'frontend', color: '#764ABC' },
+  { id: '3', name: 'Python', icon: SiPython, category: 'backend', color: '#3776AB' },
+  { id: '4', name: 'Java', icon: SiOpenjdk, category: 'backend', color: '#F05032' },
+  { id: '5', name: 'Docker', icon: SiDocker, category: 'devops', color: '#2496ED' },
+  { id: '6', name: 'AWS', icon: FaAws, category: 'cloud', color: '#ED8B00' },
+  { id: '7', name: 'CI/CD', icon: SiGithubactions, category: 'devops', color: '#F05032' },
+  { id: '8', name: 'Playwright', icon: FaMasksTheater, category: 'testing', color: '#2EAD33' },
+  { id: '9', name: 'Linux', icon: SiLinux, category: 'devops', color: '#4169E1' },
+  { id: '10', name: 'Git', icon: SiGit, category: 'devops', color: '#F05032' },
+  { id: '11', name: 'Node.js', icon: SiNodedotjs, category: 'backend', color: '#339933' },
+  { id: '12', name: 'SQL', icon: SiSqlite, category: 'backend', color: '#4169E1' },
 ];
 
 export const reels = [

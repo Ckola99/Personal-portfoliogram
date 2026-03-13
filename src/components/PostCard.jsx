@@ -77,8 +77,6 @@ export default function PostCard({ post, isAdmin = false }) {
     ? post.caption
     : `${post.caption.substring(0, CHAR_LIMIT)}...`;
 
-  console.log(post.projectUrl)
-
   return (
     <>
       <article className="flex flex-col h-full bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/20">
