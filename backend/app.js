@@ -25,7 +25,8 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.get('/api/ping', (req, res) => {
-	res.status(200).send('pong');
+	console.log("Ping received")
+	res.status(200).send('pong')
 });
 
 app.use('/api/posts', postsRouter)
