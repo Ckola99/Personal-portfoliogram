@@ -10,6 +10,10 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Render Backend
+      - name: Keep Backend Warm
         run: |
-          curl -f https://personal-portfoliogram-backend.onrender.com/api/ping
+          RESPONSE=$(curl --write-out '%{http_code}' --silent --output /dev/null "https://personal-portfoliogram-backend.onrender.com/api/ping")
+          if [ "$RESPONSE" -ne 200 ]; then
+            echo "Backend returned status $RESPONSE"
+            exit 1
+          fi
