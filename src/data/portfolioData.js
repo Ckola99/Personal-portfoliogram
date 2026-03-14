@@ -35,8 +35,8 @@ export const reels = [
   {
     id: 'r1',
     thumbnail: '/projects/commit-gen.png',
-    videoUrl: '',
-    youtubeUrl: 'https://youtube.com/shorts/YOUR_COMMITGEN_ID',
+    videoUrl: 'https://youtu.be/q4m14eJESf8',
+    youtubeUrl: 'https://youtu.be/q4m14eJESf8',
     title: 'CommitGen AI CLI',
     description: 'AI-powered Git CLI that generates Conventional Commits using OpenAI. Built with Python and Docker.',
     githubUrl: 'https://github.com/Ckola99/commit-gen',
@@ -45,8 +45,8 @@ export const reels = [
   {
     id: 'r2',
     thumbnail: '/projects/cloud-funfacts.png',
-    videoUrl: '',
-    youtubeUrl: 'https://youtube.com/shorts/YOUR_CLOUDFUNFACTS_ID',
+    videoUrl: 'https://youtu.be/N_HlyjP4Peg',
+    youtubeUrl: 'https://youtu.be/N_HlyjP4Peg',
     title: 'AWS Cloud FunFacts',
     description: 'Serverless architecture demo featuring AWS Lambda, DynamoDB, and Bedrock AI automation.',
     githubUrl: 'https://github.com/Ckola99/CloudFunFacts',
@@ -55,8 +55,8 @@ export const reels = [
   {
     id: 'r3',
     thumbnail: '/projects/kanban-app.png',
-    videoUrl: '',
-    youtubeUrl: 'https://youtube.com/shorts/YOUR_KANBAN_ID',
+    videoUrl: 'https://youtu.be/FD9ty2NObao',
+    youtubeUrl: 'https://youtu.be/FD9ty2NObao',
     title: 'Kanban Web Walkthrough',
     description: 'React-based task management dashboard featuring drag-and-drop and real-time state updates.',
     githubUrl: 'https://github.com/Ckola99/Kanban-webapp',
@@ -65,8 +65,8 @@ export const reels = [
   {
     id: 'r4',
     thumbnail: '/projects/audiophile-ecommerce.png',
-    videoUrl: '',
-    youtubeUrl: 'https://youtube.com/shorts/YOUR_AUDIOPHILE_ID',
+    videoUrl: 'https://youtu.be/djlgWLNJLT8',
+    youtubeUrl: 'https://youtu.be/djlgWLNJLT8',
     title: 'Audiophile E-Commerce',
     description: 'Advanced React frontend with Redux Toolkit for global state, shopping cart, and complex checkout flows.',
     githubUrl: 'https://github.com/Ckola99/Ecom-site/tree/main/audiophileSite',
