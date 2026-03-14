@@ -67,8 +67,8 @@ const seedDB = async () => {
 				likes: 0,
 				likedBy: [],
 				comments: [],
-				githubUrl: "https://github.com/ChristopherKola/WhatsappBot",
-				projectUrl: "https://github.com/ChristopherKola/WhatsappBot",
+				githubUrl: "https://github.com/Ckola99/WhatsappBot",
+				projectUrl: "",
 				createdAt: new Date('2026-03-14T10:00:00Z'),
 				tags: ["Node.js", "FastAPI", "Automation", "WhatsApp API", "CRM", "Python"]
 			},
