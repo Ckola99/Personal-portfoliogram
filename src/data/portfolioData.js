@@ -75,8 +75,8 @@ export const reels = [
   {
     id: "r5",
     thumbnail: "/projects/Whatsapp-bot.png",
-    videoUrl: "https://youtu.be/your-demo-video",
-    youtubeUrl: "https://youtu.be/your-demo-video",
+    videoUrl: "https://youtu.be/mmBq0TLVnPY",
+    youtubeUrl: "https://youtu.be/mmBq0TLVnPY",
     title: "AI WhatsApp CRM Bot",
     description: "A cross-platform (Node/Python) WhatsApp bot that automates sales funnels and syncs leads to Google Contacts via the People API.",
     githubUrl: "https://github.com/Ckola99/WhatsappBot",
