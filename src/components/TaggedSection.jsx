@@ -26,7 +26,7 @@ export default function TaggedSection() {
       <div className="max-w-4xl mx-auto">
         {/* Filter Tabs */}
         <div className="flex gap-2 mb-4 sm:mb-5 overflow-x-auto scrollbar-hide pb-1">
-          {['all', 'experience', 'certificate', 'award'].map((type, index) => (
+          {['all', 'experience', 'certificate'].map((type, index) => (
             <button
               key={type}
               onClick={() => setFilter(type)}
