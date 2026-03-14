@@ -93,6 +93,17 @@ const seedDB = async () => {
 				projectUrl: 'https://ecom-site-five.vercel.app/',
 				createdAt: new Date('2024-12-20T11:00:00Z'),
 				tags: ['React', 'Redux Toolkit', 'Tailwind CSS', 'E-commerce', 'Frontend'],
+			},
+			{
+				image: "/projects/Whatsapp-bot.png",
+				caption: "🤖 WhatsApp Automation Engine — Built a hybrid Node.js and Python system to automate customer onboarding. Features stateful conversation tracking, automated 24-hour follow-ups, and direct integration with Google Contacts API for seamless lead management.",
+				likes: 0,
+				likedBy: [],
+				comments: [],
+				githubUrl: "https://github.com/ChristopherKola/WhatsappBot",
+				projectUrl: "https://github.com/ChristopherKola/WhatsappBot",
+				createdAt: new Date('2026-03-14T10:00:00Z'),
+				tags: ["Node.js", "FastAPI", "Automation", "WhatsApp API", "CRM", "Python"]
 			}
 		];
 

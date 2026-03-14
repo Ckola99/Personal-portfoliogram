@@ -72,6 +72,15 @@ export const reels = [
     githubUrl: 'https://github.com/Ckola99/Ecom-site/tree/main/audiophileSite',
     projectUrl: 'https://ecom-site-five.vercel.app/',
   },
+  {
+    id: "r5",
+    thumbnail: "/projects/Whatsapp-bot.png",
+    videoUrl: "https://youtu.be/your-demo-video",
+    youtubeUrl: "https://youtu.be/your-demo-video",
+    title: "AI WhatsApp CRM Bot",
+    description: "A cross-platform (Node/Python) WhatsApp bot that automates sales funnels and syncs leads to Google Contacts via the People API.",
+    githubUrl: "https://github.com/Ckola99/WhatsappBot",
+  }
 ];
 
 export const achievements = [
