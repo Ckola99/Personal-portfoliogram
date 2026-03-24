@@ -109,11 +109,11 @@ export default function TaggedSection() {
                 <p className="text-muted-foreground text-[10px] sm:text-xs">WeThinkCode_ — NQF Level 6</p>
                 <p className="text-muted-foreground text-[10px] sm:text-xs">Feb 2025 - May 2026</p>
                 <p className="text-[10px] sm:text-xs text-muted-foreground mt-1.5 line-clamp-10">
-                  Comprehensive training in full-stack development covering Java (Spring Boot),
-                  Python, REST APIs, and scalable web application architecture. Delivered team-based MVP
-                  projects focused on server design and modular system architecture. Currently specializing
-                  in Cloud Computing, CI/CD, and DevOps on AWS, including containerization, serverless architecture
-                  (Lambda, DynamoDB), and Infrastructure-as-Code practices.
+                  Comprehensive training in full-stack development covering Java (Spring Boot), Python,
+                  REST APIs, and scalable web application architecture. Delivered team-based MVP projects
+                  focused on server design and modular system architecture. Currently specializing in Systems
+                  Integration, including designing and implementing interconnected software systems, enabling
+                  seamless communication between subsystems, and building cohesive, efficient cross-platform solutions.
                 </p>
               </div>
             </div>
