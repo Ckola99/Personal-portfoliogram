@@ -135,6 +135,7 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
 
             {post.githubUrl && (
               <a
+                aria-label='github link'
                 href={post.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -146,6 +147,7 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
 
             {post.projectUrl && (
               <a
+                aria-label='live project link'
                 href={post.projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -163,6 +165,7 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
           <div className="flex items-center justify-between mb-2 sm:mb-3">
             <div className="flex items-center gap-3 sm:gap-4">
               <button
+                aria-label='like post'
                 onClick={handleLike}
                 className={`transition-all duration-200 active:scale-125 ${isLiked ? 'animate-like-bounce' : 'hover:scale-110'}`}
               >
@@ -171,19 +174,23 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
                 />
               </button>
               <button
+                aria-label='comment'
                 onClick={() => setShowComments(!showComments)}
                 className="transition-all duration-200 hover:scale-110"
               >
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
               <button
+                aria-label='share'
                 onClick={handleShare}
                 className="transition-all duration-200 hover:scale-110 hover:rotate-12"
               >
                 <Send className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <button className="transition-all duration-200 hover:scale-110">
+            <button
+              aria-label='save'
+              className="transition-all duration-200 hover:scale-110">
               <Bookmark className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>

@@ -20,6 +20,7 @@ function ReelCard({ reel, index }) {
 
       {/* Play Button - Takes user to YouTube */}
       <a
+        aria-label='play button'
         href={reel.youtubeUrl}
         target="_blank"
         rel="noopener noreferrer"

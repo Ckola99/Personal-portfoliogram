@@ -1,19 +1,18 @@
-// Portfolio Data
-
 import {
-  SiReact,
-  SiRedux,
-  SiPython,
   SiOpenjdk,
-  SiDocker,
-  SiGithubactions,
-  SiLinux,
-  SiGit,
   SiNodedotjs,
   SiSqlite
 } from 'react-icons/si'
 
-import { FaAws } from "react-icons/fa";
+
+import { SiReact } from '@react-icons/all-files/si/SiReact';
+import { SiRedux } from '@react-icons/all-files/si/SiRedux';
+import { SiPython } from '@react-icons/all-files/si/SiPython';
+import { SiDocker } from '@react-icons/all-files/si/SiDocker';
+import { SiGithubactions } from '@react-icons/all-files/si/SiGithubactions';
+import { SiLinux } from '@react-icons/all-files/si/SiLinux';
+import { SiGit } from '@react-icons/all-files/si/SiGit';
+import { FaAws } from '@react-icons/all-files/fa/FaAws';
 import { FaMasksTheater } from "react-icons/fa6";
 
 export const skills = [

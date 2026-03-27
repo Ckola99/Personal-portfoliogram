@@ -53,6 +53,7 @@ export default function SkillsHighlights() {
       <div className="max-w-4xl mx-auto relative">
         {/* Navigation Buttons */}
         <button
+          aria-label='back'
           onClick={() => scroll('left')}
           className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border border-border p-1.5 rounded-full shadow-lg opacity-0 group-hover/container:opacity-100 transition-opacity hidden md:flex hover:bg-accent"
         >
@@ -95,6 +96,7 @@ export default function SkillsHighlights() {
         </div>
 
         <button
+          aria-label='forward'
           onClick={() => scroll('right')}
           className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border border-border p-1.5 rounded-full shadow-lg opacity-0 group-hover/container:opacity-100 transition-opacity hidden md:flex hover:bg-accent"
         >

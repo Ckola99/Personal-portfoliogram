@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PostSkeleton = () => {
   return (
 	  <div className="flex flex-col h-full bg-card border border-border rounded-xl overflow-hidden">

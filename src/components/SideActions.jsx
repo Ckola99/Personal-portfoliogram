@@ -6,6 +6,7 @@ const SideActions = ({ reel }) => {
 		<div className="absolute right-2 bottom-16 flex flex-col gap-4">
 			{/* YouTube Link (Replaces the generic Share) */}
 			<a
+				aria-label='youtube link'
 				href={reel.youtubeUrl}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -20,6 +21,7 @@ const SideActions = ({ reel }) => {
 			{/* GitHub Link */}
 			{reel.githubUrl && (
 				<a
+					aria-label='github link'
 					href={reel.githubUrl}
 					target="_blank"
 					rel="noopener noreferrer"
@@ -35,6 +37,7 @@ const SideActions = ({ reel }) => {
 			{/* Project Live Link (Optional) */}
 			{reel.projectUrl && (
 				<a
+					aria-label='Live link'
 					href={reel.projectUrl}
 					target="_blank"
 					rel="noopener noreferrer"

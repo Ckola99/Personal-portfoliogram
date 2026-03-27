@@ -9,7 +9,6 @@ import {
   Check,
   UserPlus,
   BadgeCheck,
-  Loader2
 } from 'lucide-react';
 import { socialLinks } from '@/data/portfolioData';
 import { usePosts } from '@/context/PostsContext';
@@ -64,12 +63,11 @@ export default function ProfileHeader() {
             <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden bg-secondary border-2 sm:border-4 border-background transition-transform duration-300 hover:scale-105">
               <img
                 src="/profile-photo.webp"
-                height="300"
-                width="300"
+                srcSet="/profile-small.webp 450w, /profile-photo.webp 864w"
+                sizes="(max-width: 600px) 400px, 800px"
                 alt="Christopher Kola"
+                fetchpriority="high"
                 className="w-full h-full object-cover object-bottom"
-                loading='eager'
-                fetchPriority='high'
               />
             </div>
           </div>
