@@ -135,7 +135,7 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
 
             {post.githubUrl && (
               <a
-                aria-label='github link'
+                aria-label='View Source Code on GitHub'
                 href={post.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"

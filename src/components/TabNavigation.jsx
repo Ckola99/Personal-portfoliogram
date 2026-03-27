@@ -16,6 +16,7 @@ export default function TabNavigation({ activeTab, onTabChange }) {
             const isActive = activeTab === tab.id;
             return (
               <button
+                aria-label={tab.id}
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
                 className={`flex items-center justify-center gap-2 px-6 sm:px-12 py-3 text-sm font-medium transition-all duration-300 relative ${

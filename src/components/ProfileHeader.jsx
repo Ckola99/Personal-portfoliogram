@@ -66,7 +66,7 @@ export default function ProfileHeader() {
                 srcSet="/profile-small.webp 450w, /profile-photo.webp 864w"
                 sizes="(max-width: 600px) 400px, 800px"
                 alt="Christopher Kola"
-                fetchpriority="high"
+                fetchPriority="high"
                 className="w-full h-full object-cover object-bottom"
               />
             </div>
@@ -187,6 +187,7 @@ export default function ProfileHeader() {
                   Johannesburg, South Africa
                 </span>
                 <a
+                  aria-label='email christopher kola button'
                   href={`mailto:${socialLinks.email}`}
                   className="flex items-center gap-1 hover:text-foreground transition-colors duration-200"
                 >
