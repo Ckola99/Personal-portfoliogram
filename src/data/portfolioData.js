@@ -34,7 +34,7 @@ export const skills = [
 export const reels = [
   {
     id: 'r1',
-    thumbnail: '/projects/commit-gen.png',
+    thumbnail: '/projects/commit-gen.webp',
     videoUrl: 'https://youtu.be/q4m14eJESf8',
     youtubeUrl: 'https://youtu.be/q4m14eJESf8',
     title: 'CommitGen AI CLI',
@@ -44,7 +44,7 @@ export const reels = [
   },
   {
     id: 'r2',
-    thumbnail: '/projects/cloud-funfacts.png',
+    thumbnail: '/projects/cloud-funfacts.webp',
     videoUrl: 'https://youtu.be/N_HlyjP4Peg',
     youtubeUrl: 'https://youtu.be/N_HlyjP4Peg',
     title: 'AWS Cloud FunFacts',
@@ -54,7 +54,7 @@ export const reels = [
   },
   {
     id: 'r3',
-    thumbnail: '/projects/kanban-app.png',
+    thumbnail: '/projects/kanban-app.webp',
     videoUrl: 'https://youtu.be/FD9ty2NObao',
     youtubeUrl: 'https://youtu.be/FD9ty2NObao',
     title: 'Kanban Web Walkthrough',
@@ -64,7 +64,7 @@ export const reels = [
   },
   {
     id: 'r4',
-    thumbnail: '/projects/audiophile-ecommerce.png',
+    thumbnail: '/projects/audiophile-ecommerce.webp',
     videoUrl: 'https://youtu.be/djlgWLNJLT8',
     youtubeUrl: 'https://youtu.be/djlgWLNJLT8',
     title: 'Audiophile E-Commerce',
@@ -74,7 +74,7 @@ export const reels = [
   },
   {
     id: "r5",
-    thumbnail: "/projects/Whatsapp-bot.png",
+    thumbnail: "/projects/Whatsapp-bot.webp",
     videoUrl: "https://youtu.be/mmBq0TLVnPY",
     youtubeUrl: "https://youtu.be/mmBq0TLVnPY",
     title: "AI WhatsApp CRM Bot",
