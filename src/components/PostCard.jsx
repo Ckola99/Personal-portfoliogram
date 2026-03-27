@@ -85,7 +85,7 @@ export default function PostCard({ post, isAdmin = false, isPriority = false }) 
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-secondary border border-border transition-transform duration-300 hover:scale-110">
               <img
-                src="/profile-photo.webp"
+                src="/profile-photo-2.webp"
                 loading='eager'
                 fetchPriority='high'
                 alt="Christopher Kola"
