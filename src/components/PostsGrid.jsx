@@ -27,7 +27,7 @@ export default function PostsGrid() {
                 className="animate-slide-up h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <PostCard post={post} isAdmin={isAdmin} />
+                <PostCard post={post} isAdmin={isAdmin} isPriority={index === 0} />
               </div>
             ))
           )}

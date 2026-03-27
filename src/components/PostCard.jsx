@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { usePosts } from '@/context/PostsContext';
 import LoginModal from './LoginModal';
 
-export default function PostCard({ post, isAdmin = false }) {
+export default function PostCard({ post, isAdmin = false, isPriority = false }) {
   const { user, isLoggedIn } = useAuth();
   const { toggleLike, addComment, deleteComment, deletePost, hasLiked } = usePosts();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -85,8 +85,12 @@ export default function PostCard({ post, isAdmin = false }) {
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-secondary border border-border transition-transform duration-300 hover:scale-110">
               <img
-                src="/profile-photo.jpg"
+                src="/profile-photo.webp"
+                loading='eager'
+                fetchPriority='high'
                 alt="Christopher Kola"
+                width="144"
+                height="144"
                 className="w-full h-full object-cover object-bottom"
               />
             </div>
@@ -123,6 +127,8 @@ export default function PostCard({ post, isAdmin = false }) {
           <img
             src={post.image}
             alt={post.caption}
+            loading={isPriority ? "eager" : "lazy"}
+            fetchPriority={isPriority ? "high" : "auto"}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
