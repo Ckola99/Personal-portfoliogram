@@ -49,7 +49,7 @@ export default function ProfileHeader() {
   }, []);
 
   const handleCVAction = () => {
-    const cvUrl = '/Christopher_Amen_Kola_CV_2026.pdf';
+    const cvUrl = '/Amen_Christopher_Kola_CV_2026.pdf';
     window.open(cvUrl, '_blank');
   };
 
