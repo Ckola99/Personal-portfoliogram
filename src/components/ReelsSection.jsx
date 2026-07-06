@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Play } from 'lucide-react';
 import { reels } from '@/data/portfolioData';
 import SideActions from './SideActions';
+import VideoModal from './VideoModal';
 
-function ReelCard({ reel, index }) {
+function ReelCard({ reel, index, onPlay }) {
   return (
     <div
       className="relative bg-zinc-900 rounded-xl overflow-hidden group animate-slide-up shadow-lg"
@@ -18,18 +20,16 @@ function ReelCard({ reel, index }) {
         className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
       />
 
-      {/* Play Button - Takes user to YouTube */}
-      <a
+      {/* Play Button - Plays reel in-app */}
+      <button
         aria-label='play button'
-        href={reel.youtubeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={() => onPlay(reel)}
         className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-colors duration-300"
       >
         <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
           <Play className="w-6 h-6 text-white fill-white ml-0.5" />
         </div>
-      </a>
+      </button>
 
       {/* Info Overlay (Non-clickable part) */}
       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
@@ -46,12 +46,14 @@ function ReelCard({ reel, index }) {
 }
 
 export default function ReelsSection() {
+  const [activeReel, setActiveReel] = useState(null);
+
   return (
     <div className="py-4 px-3 sm:px-4 lg:px-8 relative">
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {reels.map((reel, index) => (
-            <ReelCard key={reel.id} reel={reel} index={index} />
+            <ReelCard key={reel.id} reel={reel} index={index} onPlay={setActiveReel} />
           ))}
         </div>
 
@@ -61,6 +63,10 @@ export default function ReelsSection() {
           </div>
         )}
       </div>
+
+      {activeReel && (
+        <VideoModal reel={activeReel} onClose={() => setActiveReel(null)} />
+      )}
     </div>
   );
 }
