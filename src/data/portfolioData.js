@@ -1,7 +1,9 @@
 import {
   SiOpenjdk,
   SiNodedotjs,
-  SiSqlite
+  SiSqlite,
+  SiSpringboot,
+  SiDjango
 } from 'react-icons/si'
 
 
@@ -28,6 +30,8 @@ export const skills = [
   { id: '10', name: 'Git', icon: SiGit, category: 'devops', color: '#F05032' },
   { id: '11', name: 'Node.js', icon: SiNodedotjs, category: 'backend', color: '#339933' },
   { id: '12', name: 'SQL', icon: SiSqlite, category: 'backend', color: '#4169E1' },
+  { id: '13', name: 'Spring Boot', icon: SiSpringboot, category: 'backend', color: '#6DB33F' },
+  { id: '14', name: 'Django', icon: SiDjango, category: 'backend', color: '#092E20' },
 ];
 
 export const reels = [
