@@ -16,6 +16,7 @@ import { SiLinux } from '@react-icons/all-files/si/SiLinux';
 import { SiGit } from '@react-icons/all-files/si/SiGit';
 import { FaAws } from '@react-icons/all-files/fa/FaAws';
 import { FaMasksTheater } from "react-icons/fa6";
+import { SiGrafana, SiPrometheus, SiYaml } from 'react-icons/si';
 
 export const skills = [
   { id: '1', name: 'React', icon: SiReact, category: 'frontend', color: '#61DAFB' },
@@ -32,6 +33,9 @@ export const skills = [
   { id: '12', name: 'SQL', icon: SiSqlite, category: 'backend', color: '#4169E1' },
   { id: '13', name: 'Spring Boot', icon: SiSpringboot, category: 'backend', color: '#6DB33F' },
   { id: '14', name: 'Django', icon: SiDjango, category: 'backend', color: '#092E20' },
+  { id: '15', name: 'Grafana', icon: SiGrafana, category: 'devops', color: '#F46800' },
+  { id: '16', name: 'Prometheus', icon: SiPrometheus, category: 'devops', color: '#E6522C' },
+  { id: '17', name: 'YAML', icon: SiYaml, category: 'devops', color: '#CB171E' },
 ];
 
 export const reels = [
@@ -83,6 +87,15 @@ export const reels = [
     title: "AI WhatsApp CRM Bot",
     description: "A cross-platform (Node/Python) WhatsApp bot that automates sales funnels and syncs leads to Google Contacts via the People API.",
     githubUrl: "https://github.com/Ckola99/WhatsappBot",
+  },
+  {
+    id: 'r6',
+    thumbnail: '/projects/Aletheia.webp',
+    videoUrl: '',            // ← add your YouTube link after recording
+    youtubeUrl: '',          // ← same link
+    title: 'Aletheia Trading Engine',
+    description: 'A multi-module Java/Spring Boot algorithmic forex engine — live market data, broker-side risk management, a backtest engineered to be trustworthy (I caught and fixed a look-ahead bias in my own testing), and full Prometheus/Grafana observability. Forward-testing on a demo account.',
+    githubUrl: 'https://github.com/Ckola99/aletheia-hft',
   }
 ];
 
